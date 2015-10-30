@@ -46,6 +46,7 @@ var Morse = function() {
     alpha_to_morse[","] = "--..--";
     alpha_to_morse["?"] = "..--..";
     alpha_to_morse["="] = "-...-";
+    alpha_to_morse[" "] = "|";
 
     var morse_to_alpha = {};
     morse_to_alpha[".-"] = "A";
@@ -88,6 +89,7 @@ var Morse = function() {
     morse_to_alpha["--..--"] = ",";
     morse_to_alpha["..--.."] = "?";
     morse_to_alpha["-...-"] = "=";
+    morse_to_alpha["|"] = " ";
 
     parent.prototype.alpha_to_morse = alpha_to_morse;
     parent.prototype.morse_to_alpha = morse_to_alpha;
@@ -121,7 +123,13 @@ Morse.prototype.translate = function (source_characters, dictionary) {
 
     for (i = 0; i < source_characters.length; i++) {
         source_character = source_characters[i];
-        translated_character = dictionary[source_character];
+
+        if(dictionary.hasOwnProperty(source_character)) {
+            translated_character = dictionary[source_character];
+        }
+        else{
+            translated_character = "#";
+        }
         converted_characters.push(translated_character);
     }
 
