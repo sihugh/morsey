@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p= 'Hit up '
+    a(href="/morse/sos")
+      the alphabet -> morse translator
+    = ' to find out what to tap out on the radio when you\'re on the Titanic.'
+  p= 'Alternatively, try out '
+    a(href="/alpha/...%20---%20...")
+        the morse -> alphabet translator
+    = ' to help out if you\'re working for the coastguard.'
