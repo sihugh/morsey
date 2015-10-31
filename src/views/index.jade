@@ -10,16 +10,20 @@ block content
         a(href="api/alpha/...%20---%20...") the morse -> alphabet translator
         = ' to help out if you\'re working for the coastguard.'
 
-    form(method="post")
+    form(method="post", action="morse")
         p
             label(for="alpha") Quick! Morse code please!
             br
             input(type="text", id="alpha_input", name="alpha", placeholder="SOS")
+        p
+            input(type="submit")
+    form(method="post", action="alpha")
         p
             label(for="morse") What are those dots?
             br
             input(type="text", id="morse_input", name="morse", placeholder="... --- ...")
         p
             input(type="submit")
+
 
 
