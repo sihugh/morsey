@@ -3,7 +3,7 @@
  */
 var request = require('supertest');
 
-describe('loading express', function () {
+describe('morsey general functionality', function () {
     var server;
 
     beforeEach(function () {
@@ -14,28 +14,28 @@ describe('loading express', function () {
         server = null;
     });
 
-    it('responds to /', function testSlash(done) {
+    it('responds to a get for /', function testSlash(done) {
         request(server)
             .get('/')
             .expect(200, done);
     });
 
-
-    it('responds to /morse/SOS with json', function testMorse(done) {
-        var res = request(server).get('/morse/Dave')
-                .set('Accept', 'application/json')
-                .expect('Content-Type', 'application/json; charset=utf-8');
-        console.log(res.text);
-        res.expect(200, done);
+    it('responds to a post to /morse', function testSlash(done) {
+        var alpha = {"alpha": "SOS"};
+        request(server)
+            .post('/morse')
+            .send(alpha)
+            .expect(200, done);
     });
 
-    it('responds to "/alpha/... --- ..." with json', function testMorse(done) {
-        var res = request(server).get('/alpha/... --- ...')
-            .set('Accept', 'application/json')
-            .expect('Content-Type', 'application/json; charset=utf-8');
-        console.log(res.text);
-        res.expect(200, done);
+    it('responds to a post to /alpha', function testSlash(done) {
+        var morse = {"morse": "... --- ..."};
+        request(server)
+            .post('/alpha')
+            .send(morse)
+            .expect(200, done);
     });
+
 
     it('404 everything else', function testPath(done) {
         request(server)

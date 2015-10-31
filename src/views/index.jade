@@ -1,13 +1,25 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  p= 'Hit up '
-    a(href="/morse/sos")
-      the alphabet -> morse translator
-    = ' to find out what to tap out on the radio when you\'re on the Titanic.'
-  p= 'Alternatively, try out '
-    a(href="/alpha/...%20---%20...")
-        the morse -> alphabet translator
-    = ' to help out if you\'re working for the coastguard.'
+    h1= title
+
+    p= 'Hit up '
+        a(href="api/morse/sos") the alphabet -> morse translator
+        = ' to find out what to tap out on the radio when you\'re on the Titanic.'
+    p= 'Alternatively, try out '
+        a(href="api/alpha/...%20---%20...") the morse -> alphabet translator
+        = ' to help out if you\'re working for the coastguard.'
+
+    form(method="post")
+        p
+            label(for="alpha") Quick! Morse code please!
+            br
+            input(type="text", id="alpha_input", name="alpha", placeholder="SOS")
+        p
+            label(for="morse") What are those dots?
+            br
+            input(type="text", id="morse_input", name="morse", placeholder="... --- ...")
+        p
+            input(type="submit")
+
+
